@@ -1,0 +1,23 @@
+{
+  "name": "@neono/date-time",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/*/**.d.ts",
+  "devDependencies": {
+    "@neono/brand": "*",
+    "@neono/duration": "*",
+    "@neono/result": "*",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

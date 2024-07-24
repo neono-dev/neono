@@ -2,14 +2,17 @@
   "name": "neono",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "test": "vitest"
+  },
   "private": true,
-  "dependencies": {},
   "devDependencies": {
     "@nx/js": "19.5.1",
+    "@vitest/ui": "^2.0.4",
     "nx": "19.5.1"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "libs/*"
   ]
 }
