@@ -9,9 +9,13 @@
     "declarationMap": true,
     "target": "ES2021",
     "sourceMap": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "isolatedModules": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "index.ts"],
   "exclude": ["src/**/*.test.ts"]

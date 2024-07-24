@@ -1,15 +1,15 @@
 /// <reference types="vitest" />
-import { defineProject } from "vitest/config"
 import * as path from "node:path";
+import { defineProject } from "vitest/config";
 
 export default defineProject({
   test: {
     environment: "node",
-    globalSetup: "./vitest.global-setup.ts"
+    globalSetup: "./vitest.global-setup.ts",
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-})
+});

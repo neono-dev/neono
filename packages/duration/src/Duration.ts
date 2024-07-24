@@ -1,7 +1,8 @@
-import {DurationConstructor} from "./interfaces/DurationConstructor";
-import {Result} from "@neono/result";
-import {IntegerDivisionByZeroError} from "./errors/IntegerDivisionByZeroError";
+import type { DurationConstructor } from "./interfaces/DurationConstructor";
+import { Result } from "@neono/result";
+import { IntegerDivisionByZeroError } from "./errors/IntegerDivisionByZeroError";
 
+// eslint-disable-next-line @typescript-eslint/no-namespace,import/export
 export namespace Duration {
   export interface Duration {
     _milliseconds: number;
@@ -39,28 +40,28 @@ function _milliseconds(milliseconds: number): Duration.Duration {
     inSeconds: _getSecondsSpan(milliseconds),
     inMilliseconds: milliseconds,
     isNegative: milliseconds < 1,
-  }
+  };
 }
 
 function from(obj: DurationConstructor): Duration.Duration {
   return _milliseconds(
     Duration.MILLISECONDS_PER_DAY * (obj.days ?? 0) +
-    Duration.MILLISECONDS_PER_HOUR * (obj.hours ?? 0) +
-    Duration.MILLISECONDS_PER_MINUTE * (obj.minutes ?? 0) +
-    Duration.MILLISECONDS_PER_SECOND * (obj.seconds ?? 0) +
-    (obj.milliseconds ?? 0)
-  )
+      Duration.MILLISECONDS_PER_HOUR * (obj.hours ?? 0) +
+      Duration.MILLISECONDS_PER_MINUTE * (obj.minutes ?? 0) +
+      Duration.MILLISECONDS_PER_SECOND * (obj.seconds ?? 0) +
+      (obj.milliseconds ?? 0)
+  );
 }
 
 function abs(self: Duration.Duration): Duration.Duration {
-  if (self.isNegative) return _milliseconds(self._milliseconds * -1)
+  if (self.isNegative) return _milliseconds(self._milliseconds * -1);
   return self;
 }
 
 function difference(other: Duration.Duration) {
   return function (self: Duration.Duration): Duration.Duration {
-    return _milliseconds(self._milliseconds - other._milliseconds)
-  }
+    return _milliseconds(self._milliseconds - other._milliseconds);
+  };
 }
 
 function toString(self: Duration.Duration): string {
@@ -69,76 +70,79 @@ function toString(self: Duration.Duration): string {
   const seconds = Math.floor(self.inSeconds % 60);
   const milliseconds = Math.floor(self.inMilliseconds % 1000);
 
-  const hoursStr = String(hours).padStart(2, "0")
-  const minutesStr = String(minutes).padStart(2, "0")
-  const secondsStr = String(seconds).padStart(2, "0")
-  const millisecondsStr = String(milliseconds).padStart(3, "0")
+  const hoursStr = String(hours).padStart(2, "0");
+  const minutesStr = String(minutes).padStart(2, "0");
+  const secondsStr = String(seconds).padStart(2, "0");
+  const millisecondsStr = String(milliseconds).padStart(3, "0");
 
-  return `${hoursStr}:${minutesStr}:${secondsStr}.${millisecondsStr}`
+  return `${hoursStr}:${minutesStr}:${secondsStr}.${millisecondsStr}`;
 }
 
 function inverse(self: Duration.Duration): Duration.Duration {
-  return _milliseconds(-self._milliseconds)
+  return _milliseconds(-self._milliseconds);
 }
 
 function add(other: Duration.Duration) {
   return function (self: Duration.Duration): Duration.Duration {
-    return _milliseconds(self._milliseconds + other._milliseconds)
-  }
+    return _milliseconds(self._milliseconds + other._milliseconds);
+  };
 }
 
 function subtract(other: Duration.Duration) {
   return function (self: Duration.Duration): Duration.Duration {
-    return _milliseconds(self._milliseconds - other._milliseconds)
-  }
+    return _milliseconds(self._milliseconds - other._milliseconds);
+  };
 }
 
 function multiply(factor: number) {
   return function (self: Duration.Duration): Duration.Duration {
-    return _milliseconds(self._milliseconds * factor)
-  }
+    return _milliseconds(self._milliseconds * factor);
+  };
 }
 
 function divide(quotient: number) {
-  return function (self: Duration.Duration): Result.Result<Duration.Duration, IntegerDivisionByZeroError> {
+  return function (
+    self: Duration.Duration
+  ): Result.Result<Duration.Duration, IntegerDivisionByZeroError> {
     if (quotient === 0) {
-      return Result.Err(new IntegerDivisionByZeroError())
+      return Result.Err(new IntegerDivisionByZeroError());
     }
 
     return Result.Ok(_milliseconds(self._milliseconds / quotient));
-  }
+  };
 }
 
 function isLesserThan(other: Duration.Duration) {
   return function (self: Duration.Duration) {
     return self._milliseconds < other._milliseconds;
-  }
+  };
 }
 
 function isGreaterThan(other: Duration.Duration) {
   return function (self: Duration.Duration) {
     return self._milliseconds > other._milliseconds;
-  }
+  };
 }
 
 function isEqual(other: Duration.Duration) {
   return function (self: Duration.Duration) {
     return self._milliseconds === other._milliseconds;
-  }
+  };
 }
 
 function isLesserThanOrEqual(other: Duration.Duration) {
   return function (self: Duration.Duration) {
     return self._milliseconds <= other._milliseconds;
-  }
+  };
 }
 
 function isGreaterThanOrEqual(other: Duration.Duration) {
   return function (self: Duration.Duration) {
     return self._milliseconds >= other._milliseconds;
-  }
+  };
 }
 
+// eslint-disable-next-line import/export
 export const Duration = {
   /**
    * Constructors
@@ -179,4 +183,4 @@ export const Duration = {
   SECONDS_PER_MINUTE: 60,
   SECONDS_PER_HOUR: 24 * 60,
   SECONDS_PER_DAY: 24 * 60 * 60,
-}
+};
