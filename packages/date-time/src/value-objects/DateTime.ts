@@ -1,7 +1,7 @@
-import { Branded } from "@neono/brand";
+import type { DateTimeConstructionProps } from "../interfaces/DateTimeConstructionProps";
+import type { Branded } from "@neono/brand";
 import { Duration } from "@neono/duration";
 import { Result } from "@neono/result";
-import { DateTimeConstructionProps } from "../interfaces/DateTimeConstructionProps";
 import { DateTimeInvalidateDateStringError } from "../errors/DateTimeInvalidateDateStringError";
 
 interface DateTimePublic {
@@ -19,7 +19,7 @@ interface DateTimePublic {
   weekDay: number;
 }
 
-type DateTime = Branded<DateTimePublic, "DateTime">
+type DateTime = Branded<DateTimePublic, "DateTime">;
 
 function _dateToDateTime(date: Date): DateTime {
   return from({
@@ -42,7 +42,7 @@ function _dateFromDateTime(dateTime: DateTime): Date {
     dateTime.minute,
     dateTime.second,
     dateTime.millisecond
-  )
+  );
 }
 
 function now(): DateTime {
@@ -50,7 +50,14 @@ function now(): DateTime {
 }
 
 function from(options: DateTimeConstructionProps): DateTime {
-  const date = new Date(options.year ?? 0, options.month ? options.month - 1 : 0, options.day ?? 0, options.hour ?? 0, options.minute ?? 0, options.second ?? 0);
+  const date = new Date(
+    options.year ?? 0,
+    options.month ? options.month - 1 : 0,
+    options.day ?? 0,
+    options.hour ?? 0,
+    options.minute ?? 0,
+    options.second ?? 0
+  );
 
   return {
     __value: date.valueOf(),
@@ -63,8 +70,9 @@ function from(options: DateTimeConstructionProps): DateTime {
     millisecond: options.millisecond ?? 0,
     millisecondSinceEpoch: date.valueOf(),
     weekDay: date.getDay() === 0 ? 7 : date.getDay(),
-    timeZoneName: date.toString().match(/([A-Z]{2,})/)[0]
-  } as DateTime
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    timeZoneName: date.toString().match(/([A-Z]{2,})/)![0],
+  } as DateTime;
 }
 
 function fromMillisecondsSinceEpoch(millisecondsSinceEpoch: number): DateTime {
@@ -81,63 +89,62 @@ function parse(dateString: string): Result.Result<DateTime, Error> {
   return Result.Ok(fromMillisecondsSinceEpoch(Date.parse(dateString)));
 }
 
-
 function isAfter(other: DateTime) {
   return function (self: DateTime): boolean {
     return self.__value > other.__value;
-  }
+  };
 }
-
 
 function isAtSameMomentOrAfter(other: DateTime) {
   return function (self: DateTime): boolean {
     return self.__value >= other.__value;
-  }
+  };
 }
-
 
 function isBefore(other: DateTime) {
   return function (self: DateTime): boolean {
     return self.__value < other.__value;
-  }
+  };
 }
-
 
 function isAtSameMomentOrBefore(other: DateTime) {
   return function (self: DateTime): boolean {
     return self.__value <= other.__value;
-  }
+  };
 }
-
 
 function isAtSameMomentAs(other: DateTime) {
   return function (self: DateTime): boolean {
     return self.__value === other.__value;
-  }
+  };
 }
 
 function toIso8601String(self: DateTime) {
-  const asDate = _dateFromDateTime(self)
+  const asDate = _dateFromDateTime(self);
 
-  return asDate.toISOString()
+  return asDate.toISOString();
 }
 
 function add(duration: Duration.Duration) {
   return function (self: DateTime): DateTime {
-    return fromMillisecondsSinceEpoch(self.millisecondSinceEpoch + duration._milliseconds)
-  }
+    return fromMillisecondsSinceEpoch(
+      self.millisecondSinceEpoch + duration._milliseconds
+    );
+  };
 }
 
 function subtract(duration: Duration.Duration) {
   return function (self: DateTime): DateTime {
-    return fromMillisecondsSinceEpoch(self.millisecondSinceEpoch - duration._milliseconds)
-  }
+    return fromMillisecondsSinceEpoch(
+      self.millisecondSinceEpoch - duration._milliseconds
+    );
+  };
 }
 
 function difference(other: DateTime) {
   return function (self: DateTime): Duration.Duration {
-    return Duration.from({ milliseconds: other.__value - self.__value })
-  }
+    return Duration.from({ milliseconds: other.__value - self.__value });
+  };
 }
 
 export const DateTime = {
@@ -175,5 +182,5 @@ export const DateTime = {
   SEPTEMBER: 9,
   OCTOBER: 10,
   NOVEMBER: 11,
-  DECEMBER: 12
-}
+  DECEMBER: 12,
+};

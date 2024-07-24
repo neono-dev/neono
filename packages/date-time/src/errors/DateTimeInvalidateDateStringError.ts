@@ -3,7 +3,7 @@ interface DateTimeInvalidateDateStringErrorProps {
 }
 
 export class DateTimeInvalidateDateStringError extends Error {
-  readonly _tag = "DateTimeInvalidateDateStringError"
+  readonly _tag = "DateTimeInvalidateDateStringError";
   readonly input: string;
 
   constructor({ input }: DateTimeInvalidateDateStringErrorProps) {
