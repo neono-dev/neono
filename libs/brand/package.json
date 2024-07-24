@@ -8,8 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "build:watch": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:watch": "tsc -w"
   },
   "keywords": [],
   "author": "",
