@@ -19,7 +19,7 @@ interface DateTimePublic {
   weekDay: number;
 }
 
-type DateTime = Branded<DateTimePublic, "DateTime">;
+export type DateTime = Branded<DateTimePublic, "DateTime">;
 
 function _dateToDateTime(date: Date): DateTime {
   return from({
