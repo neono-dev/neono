@@ -1,1 +1,1 @@
-export * from "./src/Result"
+export * from "./src/Result";
