@@ -1,1 +1,1 @@
-export * from "./src/Option"
+export * from "./src/Option";

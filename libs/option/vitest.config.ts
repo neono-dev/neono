@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-import { defineProject } from "vitest/config"
 import * as path from "node:path";
+import { defineProject } from "vitest/config";
 
 export default defineProject({
   test: {
@@ -11,4 +11,4 @@ export default defineProject({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-})
+});

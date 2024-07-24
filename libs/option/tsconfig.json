@@ -8,7 +8,14 @@
     "declaration": true,
     "declarationMap": true,
     "target": "ES2021",
-    "sourceMap": true
+    "sourceMap": true,
+    "isolatedModules": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "index.ts"],
   "exclude": ["src/**/*.test.ts"]
