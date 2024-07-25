@@ -1,13 +1,15 @@
 {
   "name": "@neono/date-time",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "types": "dist/*/**.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
-    "@neono/brand": "^1.1.0",
-    "@neono/duration": "^1.1.0",
-    "@neono/result": "^1.1.0",
+    "@neono/brand": "^1.1.1",
+    "@neono/duration": "^1.1.1",
+    "@neono/result": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
     "eslint-config-prettier": "^9.1.0",

@@ -1,11 +1,13 @@
 {
   "name": "@neono/result",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "types": "dist/*/**.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@neono/option": "^1.1.0"
+    "@neono/option": "^1.1.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.17.0",
