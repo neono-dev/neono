@@ -2,7 +2,7 @@
   "name": "@neono/result",
   "version": "1.1.1",
   "main": "dist/index.js",
-  "types": "dist/*/**.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
